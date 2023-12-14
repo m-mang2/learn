@@ -40,4 +40,24 @@ bool foo(int i )
 }
 ```
 
+### no_unique_address
+메모리를 잡을 필요가 없다고 알려주는 키워드
 
+* Empty class
+non-static 멤버 데이터와 가상함수가 없는 클래스로 크기는 1
+```
+struct empty
+{
+    voo foo(){}
+}
+sizeof(empty) /// 주소 1
+
+struct empty
+{
+    voo foo(){}
+}
+struct data
+{
+    [[no_unique_address]]empty e; // 크기가 0으로 잡
+}
+```
