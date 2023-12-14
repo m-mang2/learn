@@ -20,6 +20,6 @@ Point p1 = {.x =1, .y = 2};
 ```
 주의점
 * 선언된 순서대로 초기화 해야함 {.y = 2, .x = 1} error
-* 이름 지정 안하면 안됨 {.x = 1, 2}
+* 이름 지정을 몇개만 하면 안됨 {.x = 1, 2}
 * rect r3 = {leftTop.x = 10} leftTop, rightbottom 이렇게 있는데 앞에꺼만 초기화 해도 안됨
 * 배열 중간에 넣으면 안됨 struct data {int arr[3]}, data d = {[1] = 2};
