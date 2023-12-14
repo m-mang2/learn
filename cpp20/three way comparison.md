@@ -22,6 +22,7 @@ class Int32
     // Int32 형과 비교
     auto operator<=>(const Int32& other) const { return value <=> ohter.value; }
     bool operator==(const Int32& other) const { return value == ohter.value; }
+    // auto operator<=>(const Int32& other) const = default; 이렇게하면 자동으로 <=>, == 를 자동으로 생성해주며 맴버가 놓인 순서대로 비교해줌(단 비교가 안되는 변수가 있으면 실패)
 
     // int와 비교
     auto operator<=>(int other) const { return value <=> ohter; }
@@ -29,6 +30,7 @@ class Int32
 
 }
 Int32 n1(10); Int32 n2(20);
+
 아래의 경우가 다 가능
 n1 == n2 // n1.operator==(n2)
 n1 != n2 // !(n1 == n2)
@@ -37,7 +39,7 @@ n1 > n2 // (n1<=>n2) > 0
 n1 < 20 // (n1<=>10) < 0
 20 < n1 // (10<=>n1) < 0 : error -> (n1<=>10) > 0로 변경
 ```
-
+**== 연산자를 따로 만드는 이유는 비교 연산자의 경우 최적화를 여러방식으로 할 수 있기 때문에**
 
 ## Rewrite Expresstion
 (10<=>n1) < 0 : error -> (n1<=>10) > 0로 변경 되는것처럼 **컴파일 시간에 다시 작성**하는 개념
