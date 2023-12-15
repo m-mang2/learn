@@ -28,3 +28,27 @@ constexpr auto d = std::find(std::begin(x), std::end(x), 3); // x도 constexpr �
 ```
 
 ## consteval
+
+### constexpr function
+* 함수가 **컴파일 시간 또는 실행시간에 수행** 될 수 있음
+```
+constexpr int add(int a, int b) {return a+b;}
+int x = 1, y =2;
+int ret = add(x, y); // 실행 시간 수행
+int ret = add(1, 2); // 컴파일 시간 수행
+```
+
+### consteval
+*  함수는 반드시 컴파일 시간에만 수행되어야 
+```
+consteval int add(int a, int b) {return a+b;}
+int x = 1, y =2;
+int ret = add(x, y); // error
+int ret = add(1, 2); // 컴파일 시간 수행
+```
+
+## constinit
+초기 값을 컴파일 시간에 알아야 하며 constexptr과는 다르게 상수가 아니기 때문에 값 변경 가능
+전역 변수 선언시 순서가 보장 안되는데 constinit를 사용하면 **컴파일 타임에 초기화** 보장
+
+
