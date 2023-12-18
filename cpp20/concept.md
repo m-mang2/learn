@@ -39,6 +39,21 @@ T gcd2(T a, T b) { return  a % b; }
 
 gcd2(1.1, 1.1) // gcd2(double a, double b ) 으로 변환
 gcd2(1, 1) // T가 정수이기 때문에 template<typename T> requires std::is_integral_v<T> T gcd2(T a, T b) { return  a % b; } 으로 변환
-gcd2(1.0f, 1.0f) // T가 실수이기 때문에 템플릿으로 변환 하지 않고 일반 gcd2(double a, double b )함수로 변
+gcd2(1.0f, 1.0f) // T가 실수이기 때문에 템플릿으로 변환 하지 않고 일반 gcd2(double a, double b )함수로 변경
+```
+## Requires clauses 함수 오버로딩
+#### 특정 조건에 따른 함수 오버로딩
+* 실수와 정수에 따른 오버로딩 (std::is_floating_point_v<T>, std::is_integral_v<T>)
+* 포인터인 경우와 포인터가 아닌 경우에 따른 오버로딩 (std::is_pointer_v<T>)
+* 반복자의 종류에 따른 오버로딩 (std::random_access_iterator<T>, std::input_iterator<T>)
+* 가상함수 존재에 따른 오버로딩 (std::is_polymorphic_v<T>)
 
 ```
+template<typename T> requires std::is_polymorphic_v<T> //가상함수가 존재할 때
+void func(const T& arg) {}
+template<typename T> requires (!std::is_polymorphic_v<T>) //가상함수가 존재하지 않을 때
+void func(const T& arg) {}
+```
+
+
+
