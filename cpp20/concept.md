@@ -41,6 +41,13 @@ gcd2(1.1, 1.1) // gcd2(double a, double b ) 으로 변환
 gcd2(1, 1) // T가 정수이기 때문에 template<typename T> requires std::is_integral_v<T> T gcd2(T a, T b) { return  a % b; } 으로 변환
 gcd2(1.0f, 1.0f) // T가 실수이기 때문에 템플릿으로 변환 하지 않고 일반 gcd2(double a, double b )함수로 변경
 ```
+## Requires clauses
+* 템플릿 인자가 가져야하는 **제약조건을 표기** 하는 문법
+* 컴파일 시간에 결정되는 bool 형식의 상수 값
+* 반드시 bool 타입이어야 함 ** 변환은 허용되지 않음(int 안됨)**
+* 컴파일 시간 함수를 호출하거나, !등을 사용할 때는 괄호가 필요
+* 조건을 만족하는 템플릿이 2개 이상이 있는 경우는 안됨
+
 ## Requires clauses 함수 오버로딩
 #### 특정 조건에 따른 함수 오버로딩
 * 실수와 정수에 따른 오버로딩 (std::is_floating_point_v<T>, std::is_integral_v<T>)
