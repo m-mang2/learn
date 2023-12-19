@@ -1,3 +1,4 @@
+기본 모양
 ```
 // concept 생성
 template<typename T>
