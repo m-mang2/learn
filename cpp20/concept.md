@@ -1,4 +1,3 @@
-타입이 가진 요구조건들을 가진 이름을 가진 집합
 ```
 // concept 생성
 template<typename T>
