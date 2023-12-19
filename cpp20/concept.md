@@ -112,5 +112,7 @@ void f1(auto a) // template<typename T> void f1( T a) 와 같음 그렇지만 �
 ## 표준 Concept
 ![image](https://github.com/m-mang2/learn/assets/135841268/187ef314-5042-4282-a1ba-38d11f38e87e)
 
+https://en.cppreference.com/w/cpp/concepts
+더보고 싶으면 여기서 확인
 
 
