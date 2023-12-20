@@ -74,7 +74,7 @@ int main()
 ```
 
 ![image](https://github.com/m-mang2/learn/assets/135841268/d4c301bd-bf89-4972-a33d-b3248f053cb2)
-만들어진 구문으로 해설(?)
+#### 만들어진 구문으로 해설(?)
 1. promise타입의 객체가 만들어짐
 2. get_return_object() 함수가 호출 되고 여기서는 Generator타입에 자기 자신(promise)타입을 넣어서 반환함
 3. main 함수와 foo()를 왔다 갔다 하기 위해서는 힙에 메모리를 저장하고 있어야 함
