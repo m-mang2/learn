@@ -40,9 +40,8 @@ public:
 인터페이스를 만들고 edit에서 약한 결합으로 다양한 Vaidation 정책 클래스 사용
 ![image](https://github.com/m-mang2/learn/assets/135841268/960e70a2-a843-45c5-a554-ae8634badea3)
 
-### uml
-![image](https://github.com/m-mang2/learn/assets/135841268/9505607c-64a8-441a-a17d-bdb004f40a19)
 
+### 사용방법
 
 ```
 class DigitValidator : public IValidator // 숫자만 넣는 정책
@@ -61,11 +60,17 @@ public:
 	}
 };
 
+Edit edit;
 
-DigitValidator digit;
-set_validator(&digit); // 새로운 정책을 넣음
+DigitValidator digit(10);
+edit.set_validator(&digit); // 새로운 정책을 넣음
+
+DigitValidator digit2(5);
+edit.set_validator(&digit2); // 새로운 정책을 넣음
 ```
 
+### UML
+![image](https://github.com/m-mang2/learn/assets/135841268/9505607c-64a8-441a-a17d-bdb004f40a19)
 
 ## template method와의 차이점
 * template method패턴은 가상함수로 만들어진 정책의 재사용이 불가능하지만 strategy 패턴은 정책과 기능이 분리되어 있어서 재활용이 가능함
