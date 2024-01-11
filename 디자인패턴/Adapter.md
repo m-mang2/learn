@@ -78,3 +78,85 @@ v.push_back( new ObjAdapter(&ct)); // ObjAdapter로 한번 감싸서 넣음
 
 ![image](https://github.com/m-mang2/learn/assets/135841268/711a59a1-7128-4c70-94f8-6201e734ba19)
 
+## STL
+
+스택을 만들때 
+### 방법1. list를 상속을 사용한다면 stack에서는 사용하지않는 push_front같은것도 사용 가능 하게됨(좋지못함)
+```
+template<typename T> 
+class stack : public std::list<T>
+{
+public:
+	void push(const T& a) 
+	{ 
+		std::list<T>::push_back(a); 
+	}
+	void pop()			  
+	{ 
+		std::list<T>::pop_back(); 
+	}
+	T&   top()            
+	{ 
+		return std::list<T>::back(); 
+	}
+};
+```
+
+## 방법2. private 상속을 받는다면 기반클래스의 맴버함수를 파생클래스에서 사용불가능 그렇지만 c++에서만 사용가능
+```
+template<typename T> 
+class stack : private std::list<T>
+{
+public:
+	void push(const T& a) 
+	{ 
+		std::list<T>::push_back(a); 
+	}
+	void pop()			  
+	{ 
+		std::list<T>::pop_back(); 
+	}
+	T&   top()            
+	{ 
+		return std::list<T>::back(); 
+	}
+};
+```
+
+## 방법3. 포함으로 사용(가장좋지만..) 만약 가상함수를 오버라이딩 하고 싶을 때 할 수 없음
+```
+template<typename T> 
+class stack 
+{
+	std::list<T> c;
+public:
+	void push(const T& a) 
+	{ 
+		c.push_back(a); 
+	}
+	void pop()			  
+	{ 
+		c.pop_back(); 
+	}
+	T&   top()            
+	{ 
+		return c.back(); 
+	}
+};
+```
+
+## 방법4. 단위 전략 디자인(policty base design), 기본은 deque로 하되 원한다면 list나 vector등 다른것으로 교체 가능
+```
+template<typename T, typename C = std::deque<T> > 
+class stack 
+{
+	C c; // class adapter, stl에는 이렇게 되어 있음 생성할 때 지정하니 굳이 교체할 필요가 없긴함
+//	C* c; // object adapter
+public:
+	constexpr void push(const T& a) { c.push_back(a); }
+	constexpr void pop()		    { c.pop_back(); 	}
+	constexpr T&   top()            { return c.back(); }
+};
+```
+
+
