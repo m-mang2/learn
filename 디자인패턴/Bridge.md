@@ -88,7 +88,7 @@ public:
 	void play() { impl->play(); } // 데코랑 유사
 	void stop() { impl->stop(); }
 	
-	void play_one_minute()
+	void play_one_minute() // People계층에서 1분듣기가 필요하다면 IMP3까지 가서 변경할 필요없이 MP3단에서 수정 필요(물론 기능 조합으로 변경이 불가능하다면 IMP3로 가야함)
 	{
 		impl->play();
 		// 1분 후에.. 
