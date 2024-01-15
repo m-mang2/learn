@@ -109,4 +109,12 @@ public:
 };
 ```
 
+# C++ 전용 예제 (다른 언어X)
+![image](https://github.com/m-mang2/learn/assets/135841268/fb426b24-00c5-4841-959d-08a4575210d1)
 
+![image](https://github.com/m-mang2/learn/assets/135841268/31aa076a-9aea-4db6-9ada-991e6514d130)
+h에는 전방선언만 사용하고 cpp에 pointImpl.h 선언
+
+장점
+* 컴파일 속도 증가
+* 정보 은닉을 할 수 있음
