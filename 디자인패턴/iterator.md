@@ -1,6 +1,8 @@
 > 복합 객체 요소들의 **내부 표현 방식을 공개하지 않고도 순차적으로 접근** 할 수 있는 방법을 제공
 
-## interfac 기반
+![image](https://github.com/m-mang2/learn/assets/135841268/18248031-ab79-498f-be65-79884569ec13)
+
+## interface 기반
 java, c# swift
 
 #### 모든 반복자는 사용법이 동일해야함
@@ -89,6 +91,68 @@ public:
 * getObject, moveNext가 가상함수기 때문에 자주 호출된다면 오버헤드가 있음
 * 배열 접근할때도 주소를 보관하고 ++ 으로 이동하는데 배열은 그럴필요가 없는데도 동일하게 작동하게됨
 
-// 이건 내일...
+
 ## c++ stl 라이브러리가 사용하는 설계 방식
-성능향상을 위해서
+* 가상 함수가 아닌 인라인 치환
+* moveNext() 대신 ++연산자 재정의
+* getObject() 대신 *연산자 재정의
+* 반복자를 꺼내기 위해 begin(), end() 함수 제공
+* 기본적인 개념은 동일하지만 c++ 테크닉
+
+```
+
+template<typename T> struct Node
+{
+	T     data;
+	Node* next;
+	Node(const T& d, Node* n) : data(d), next(n) {}
+};
+
+template<typename T> 
+class slist_iterator
+{
+	Node<T>* current;
+public:
+	slist_iterator(Node<T>* p = nullptr)
+		: current(p)
+	{
+	}
+
+	inline T& operator*() { return current->data; }
+
+	inline slist_iterator& operator++() 
+	{
+		current = current->next;
+		return *this; 
+	}
+
+	// 이건 편의상..
+	inline bool operator==(const slist_iterator& other) const 
+	{
+		return current == other.current;
+	}
+	inline bool operator!=(const slist_iterator& other) const 
+	{
+		return current != other.current;
+	}	
+};
+
+
+
+template<typename T> class slist 
+{
+	Node<T>* head = nullptr;
+public:
+	void push_front(const T& a) { head = new Node<T>(a, head); }
+
+	inline slist_iterator<T> begin()
+	{
+		return slist_iterator<T>(head);
+	}
+	inline  slist_iterator<T> end()
+	{
+		return slist_iterator<T>(nullptr);
+	}
+};
+
+```
