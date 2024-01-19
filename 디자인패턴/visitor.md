@@ -8,6 +8,7 @@
 * 방문의 대상(list, vector)은 accept()가있어야한다 (IAcceptor)
 
 ![image](https://github.com/m-mang2/learn/assets/135841268/44800ce2-f7ae-4671-b377-8a107a1066f5)
+![image](https://github.com/m-mang2/learn/assets/135841268/25807723-7526-4ab3-8edb-139bf404a94f)
 
 ```
 template<typename T> struct IVisitor
